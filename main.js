@@ -54,7 +54,9 @@ function playRound (computerSelection, playerSelection) {
     }    
 }
 
-const player = prompt('INtroduzca su jugada. Las opciones son Rock, Paper or Scissors: ');
-const computer = getComputerChoice();
 
-console.log(playRound(computer,player));
+function getPlayerChoice() {
+    return prompt('INtroduzca su jugada. Las opciones son Rock, Paper or Scissors: ')
+}
+
+console.log(playRound(getComputerChoice(),getPlayerChoice()))
