@@ -59,4 +59,30 @@ function getPlayerChoice() {
     return prompt('INtroduzca su jugada. Las opciones son Rock, Paper or Scissors: ')
 }
 
-console.log(playRound(getComputerChoice(),getPlayerChoice()))
+function game() {
+    let juegos = 0;
+    let ganados = 0;
+    let perdidos = 0;
+    for (let i = 0; i < 5; i++) {
+        juegos += 1;
+        let juego = playRound();
+        if (juego == 'Felicitaciones! Ganaste') {
+            ganados += 1;
+        }
+        else if (juego = 'Ups! Perdiste') {
+            perdidos += 1
+        }
+        console.log(juego);
+    }
+    if (ganados > perdidos) {
+        return 'Ganaste el partido!!!'
+    }
+    else if (ganados < perdidos) {
+        return 'Perdiste el partido :('
+    } 
+    else {
+        return 'ES un empate!'
+    } 
+}
+
+// console.log(playRound(getComputerChoice(),getPlayerChoice()))
