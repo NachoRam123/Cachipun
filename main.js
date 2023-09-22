@@ -11,47 +11,51 @@ function getComputerChoice () {
     }
 }
 
-function playRound (computerSelection, playerSelection) {
-    const playerS = playerSelection.toLowerCase();
+function playRound () {
+    const playerS = getPlayerChoice().toLowerCase();
+    const computerSelection = getComputerChoice();
     const win = 'Felicitaciones! Ganaste';
     const tie = 'ES un empate!';
     const loose = 'Ups! Perdiste';
+    const mensaje = '. Your: ' + playerS + '. Computer: ' + computerSelection
+    let result = ''
     if (playerS == 'rock') {
         if (computerSelection == 'Rock') {
-            return tie
+            result = (tie + mensaje)
         }
         else if (computerSelection == 'Paper') {
-            return loose
+            result = loose + mensaje
         }
         else {
-            return win
+            result = win + mensaje
         }
     }
     else if (playerS == 'paper') {
             if (computerSelection == 'Rock') {
-                return win
+                result = win + mensaje
             }
             else if (computerSelection == 'Paper') {
-                return tie
+                result = tie + mensaje
             }
             else {
-                return loose
+                result = loose + mensaje
             }
     }
     else if (playerS == 'scissors') {
         if (computerSelection == 'Rock') {
-            return win
+            result = win + mensaje
         }
         else if (computerSelection == 'Paper') {
-            return loose
+            result = loose + mensaje
         }
         else {
-            return tie
+            result = tie + mensaje
         } 
     }
     else {
         alert('No existe')
-    }    
+    }
+    return result    
 }
 
 
@@ -66,22 +70,22 @@ function game() {
     for (let i = 0; i < 5; i++) {
         juegos += 1;
         let juego = playRound();
-        if (juego == 'Felicitaciones! Ganaste') {
+        if (juego.slice(0,4) == 'Feli') {
             ganados += 1;
         }
-        else if (juego = 'Ups! Perdiste') {
+        else if (juego.slice(0,4) == 'Ups!') {
             perdidos += 1
         }
         console.log(juego);
     }
     if (ganados > perdidos) {
-        return 'Ganaste el partido!!!'
+        return `Ganaste el partido!!! ${ganados} a ${perdidos}!!`
     }
     else if (ganados < perdidos) {
-        return 'Perdiste el partido :('
+        return `Perdiste el partido :( ${perdidos} a ${ganados}`
     } 
     else {
-        return 'ES un empate!'
+        return `ES un empate! ${ganados} a ${perdidos}`
     } 
 }
 
