@@ -63,54 +63,80 @@ function playRound (playerSelection) {
 //     return prompt('INtroduzca su jugada. Las opciones son Rock, Paper or Scissors: ')
 // }
 
-// function game() {
-//     let juegos = 0;
-//     let ganados = 0;
-//     let perdidos = 0;
-//     for (let i = 0; i < 5; i++) {
-//         juegos += 1;
-//         let juego = playRound();
-//         if (juego.slice(0,4) == 'Feli') {
-//             ganados += 1;
-//         }
-//         else if (juego.slice(0,4) == 'Ups!') {
-//             perdidos += 1
-//         }
-//         console.log(juego);
-//     }
-//     if (ganados > perdidos) {
-//         return `Ganaste el partido!!! ${ganados} a ${perdidos}!!`
-//     }
-//     else if (ganados < perdidos) {
-//         return `Perdiste el partido :( ${perdidos} a ${ganados}`
-//     } 
-//     else {
-//         return `ES un empate! ${ganados} a ${perdidos}`
-//     } 
-// }
+function game() {
+    let juegos = 0;
+    let ganados = 0;
+    let perdidos = 0;
+    for (let i = 0; i < 5; i++) {
+        juegos += 1;
+        let juego = playRound();
+        if (juego.slice(0,4) == 'Feli') {
+            ganados += 1;
+        }
+        else if (juego.slice(0,4) == 'Ups!') {
+            perdidos += 1
+        }
+        console.log(juego);
+    }
+    if (ganados > perdidos) {
+        return `Ganaste el partido!!! ${ganados} a ${perdidos}!!`
+    }
+    else if (ganados < perdidos) {
+        return `Perdiste el partido :( ${perdidos} a ${ganados}`
+    } 
+    else {
+        return `ES un empate! ${ganados} a ${perdidos}`
+    } 
+}
 
 // console.log(playRound(getComputerChoice(),getPlayerChoice()))
 
 let selection = document.querySelector('#Selections');
 
+let juegos = 0;
+let ganados = 0;
+let perdidos = 0;
+let EndGame = 0;
 selection.addEventListener('click', (e) => {
-    let target = e.target;
-    let resultPartida = ''
-    switch(target.id) {
-        case 'rock':
-            resultPartida = playRound('rock');
-            break;
-        case 'paper':
-            resultPartida = playRound('paper');
-            break;
-        case 'scissors':
-            resultPartida = playRound('scissors');
-            break;
-    }
-    let resultsContainer = document.querySelector('#results')
-    let results = document.createElement('p')
-
-    results.textContent = resultPartida
-    resultsContainer.appendChild(results)
+    let resultsContainer = document.querySelector('#results');
+    let results = document.createElement('p');
+    let finalResultsCon = document.createElement('h1');
+    juegos += 1;
+    if (juegos<=5) {
+        let target = e.target;
+        let resultPartida = ''
+        switch(target.id) {
+            case 'rock':
+                resultPartida = playRound('rock');
+                break;
+            case 'paper':
+                resultPartida = playRound('paper');
+                break;
+            case 'scissors':
+                resultPartida = playRound('scissors');
+                break;
+        }
+        if (resultPartida.slice(0,4) == 'Feli') {
+            ganados += 1;
+        }
+        else if (resultPartida.slice(0,4) == 'Ups!') {
+            perdidos += 1;
+        }
+        if (juegos==5) {
+            if (ganados > perdidos) {
+                finalResult = `Ganaste el partido!!! ${ganados} a ${perdidos}!!`
+            }
+            else if (ganados < perdidos) {
+                finalResult =  `Perdiste el partido :( ${perdidos} a ${ganados}`
+            } 
+            else {
+                finalResult = `ES un empate! ${ganados} a ${perdidos}`
+            }
+            finalResultsCon.textContent = finalResult
+        }    
+    results.textContent = resultPartida;
+    resultsContainer.appendChild(results);
+    resultsContainer.appendChild(finalResultsCon);
+    }    
 })
 
