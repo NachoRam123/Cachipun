@@ -55,7 +55,6 @@ function playRound (playerSelection) {
     else {
         alert('No existe')
     }
-    console.log(result)
     return result    
 }
 
@@ -96,15 +95,22 @@ let selection = document.querySelector('#Selections');
 
 selection.addEventListener('click', (e) => {
     let target = e.target;
+    let resultPartida = ''
     switch(target.id) {
         case 'rock':
-            playRound('rock');
+            resultPartida = playRound('rock');
             break;
         case 'paper':
-            playRound('paper');
+            resultPartida = playRound('paper');
             break;
         case 'scissors':
-            playRound('scissors');
+            resultPartida = playRound('scissors');
             break;
     }
+    let resultsContainer = document.querySelector('#results')
+    let results = document.createElement('p')
+
+    results.textContent = resultPartida
+    resultsContainer.appendChild(results)
 })
+
