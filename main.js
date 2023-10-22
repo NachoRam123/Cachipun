@@ -63,31 +63,31 @@ function playRound (playerSelection) {
 //     return prompt('INtroduzca su jugada. Las opciones son Rock, Paper or Scissors: ')
 // }
 
-function game() {
-    let juegos = 0;
-    let ganados = 0;
-    let perdidos = 0;
-    for (let i = 0; i < 5; i++) {
-        juegos += 1;
-        let juego = playRound();
-        if (juego.slice(0,4) == 'Feli') {
-            ganados += 1;
-        }
-        else if (juego.slice(0,4) == 'Ups!') {
-            perdidos += 1
-        }
-        console.log(juego);
-    }
-    if (ganados > perdidos) {
-        return `Ganaste el partido!!! ${ganados} a ${perdidos}!!`
-    }
-    else if (ganados < perdidos) {
-        return `Perdiste el partido :( ${perdidos} a ${ganados}`
-    } 
-    else {
-        return `ES un empate! ${ganados} a ${perdidos}`
-    } 
-}
+// function game() {
+//     let juegos = 0;
+//     let ganados = 0;
+//     let perdidos = 0;
+//     for (let i = 0; i < 5; i++) {
+//         juegos += 1;
+//         let juego = playRound();
+//         if (juego.slice(0,4) == 'Feli') {
+//             ganados += 1;
+//         }
+//         else if (juego.slice(0,4) == 'Ups!') {
+//             perdidos += 1
+//         }
+//         console.log(juego);
+//     }
+//     if (ganados > perdidos) {
+//         return `Ganaste el partido!!! ${ganados} a ${perdidos}!!`
+//     }
+//     else if (ganados < perdidos) {
+//         return `Perdiste el partido :( ${perdidos} a ${ganados}`
+//     } 
+//     else {
+//         return `ES un empate! ${ganados} a ${perdidos}`
+//     } 
+// }
 
 // console.log(playRound(getComputerChoice(),getPlayerChoice()))
 
@@ -96,11 +96,14 @@ let selection = document.querySelector('#Selections');
 let juegos = 0;
 let ganados = 0;
 let perdidos = 0;
-let EndGame = 0;
+
 selection.addEventListener('click', (e) => {
     let resultsContainer = document.querySelector('#results');
     let results = document.createElement('p');
     let finalResultsCon = document.createElement('h1');
+    let startAgain = document.querySelector('#startAgain');
+    let boton = document.createElement('button');
+    boton.textContent = 'Try it Again!';
     juegos += 1;
     if (juegos<=5) {
         let target = e.target;
@@ -132,11 +135,28 @@ selection.addEventListener('click', (e) => {
             else {
                 finalResult = `ES un empate! ${ganados} a ${perdidos}`
             }
-            finalResultsCon.textContent = finalResult
+            finalResultsCon.textContent = finalResult;
+            startAgain.appendChild(boton);
         }    
     results.textContent = resultPartida;
     resultsContainer.appendChild(results);
     resultsContainer.appendChild(finalResultsCon);
-    }    
+    }
+    boton.addEventListener('click', function() {
+        juegos = 0;
+        perdidos = 0;
+        ganados = 0;
+        deleteChilds(resultsContainer);
+        deleteChilds(startAgain);
+    })   
 })
+
+function deleteChilds (container) {
+    let child = container.lastElementChild;
+        while (child) {
+            container.removeChild(child);
+            child = container.lastElementChild;
+        }
+}
+
 
