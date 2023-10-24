@@ -1,0 +1,32 @@
+button {
+    background-color: #115a2d;
+    color: #e5e7eb;
+    font-weight: bold;
+    border-radius: 5px;
+    border-color: black;
+    padding: 5px 20px;
+    border-style: solid;
+    /* margin: 10px */
+}
+
+.selecciones, .denuevo {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.resultados {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    /* text-align: center; */
+}
+p {
+    font-family: 'Courier New', monospace;
+    font
+}
+
+h1 {
+    text-align: center;
+}

@@ -98,8 +98,9 @@ let ganados = 0;
 let perdidos = 0;
 
 selection.addEventListener('click', (e) => {
-    let resultsContainer = document.querySelector('#results');
-    let results = document.createElement('p');
+    let resultsContainer = document.querySelector('ol');
+    let results = document.createElement('li');
+    let resultadoFinal = document.querySelector('#resultadoFinal');
     let finalResultsCon = document.createElement('h1');
     let startAgain = document.querySelector('#startAgain');
     let boton = document.createElement('button');
@@ -140,7 +141,7 @@ selection.addEventListener('click', (e) => {
         }    
     results.textContent = resultPartida;
     resultsContainer.appendChild(results);
-    resultsContainer.appendChild(finalResultsCon);
+    resultadoFinal.appendChild(finalResultsCon);
     }
     boton.addEventListener('click', function() {
         juegos = 0;
@@ -148,6 +149,7 @@ selection.addEventListener('click', (e) => {
         ganados = 0;
         deleteChilds(resultsContainer);
         deleteChilds(startAgain);
+        deleteChilds(resultadoFinal);
     })   
 })
 
